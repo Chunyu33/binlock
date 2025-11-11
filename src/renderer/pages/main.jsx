@@ -234,10 +234,10 @@ const MainPage = () => {
           onChange={(e) => setPassword(e.target.value)}
           style={{ width: 200 }}
         />
-        <Button type="primary" onClick={handleEncrypt}>
+        <Button type="primary" onClick={handleEncrypt} disabled={!fileList.length || !password}>
           开始加密
         </Button>
-        <Button type="primary" onClick={handleDecrypt}>
+        <Button type="primary" onClick={handleDecrypt} disabled={!fileList.length || !password}>
           开始解密
         </Button>
         <Button danger icon={<ClearOutlined />} onClick={handleClear}>
