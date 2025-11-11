@@ -1,0 +1,44 @@
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: "#1e1e1e";
+  padding: 10px 20px;
+  overflow: hidden;
+}
+
+.table-container {
+  border-radius: 8px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.ant-table-body::-webkit-scrollbar {
+  width: 8px;
+}
+.ant-table-body::-webkit-scrollbar-thumb {
+  background-color: #4caf50;
+  border-radius: 4px;
+}
+.ant-table-body::-webkit-scrollbar-track {
+  background-color: #e1e1e1;
+  border-radius: 4px;
+}
+
+/* antd覆盖 */
+.ant-table-container {
+  min-height: 80vh;
+}
+.ant-table-tbody {
+  height: 76vh !important;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 12px;
+  color: #747d8c;
+}

@@ -1,0 +1,80 @@
+import React, { useEffect, useState, useRef, useMemo } from "react";
+import { ConfigProvider, theme as antdTheme } from "antd";
+import Header from "./components/Header";
+import SettingMenu from "./components/SettingMenu";
+import MainPage from "./pages/main";
+import useTheme from "./hooks/useTheme"; // 引入自定义 Hook
+
+// import bgImage from "../assets/bg1.png"; // 背景图
+
+// const bgStyles = {
+//   backgroundImage: `url(${bgImage})`,
+//   backgroundSize: "cover",
+//   backgroundPosition: "center",
+// };
+const bgStyles = {};
+
+
+const App = () => {
+  const [showSettings, setShowSettings] = useState(false);
+  const settingsRef = useRef(null);
+
+  // 🎨 从 Hook 获取主题状态和更新逻辑
+  const { theme } = useTheme();
+
+
+  const toggleSettings = () => {
+    console.log("toggleSettings");
+  };
+
+  // 动态控制 antd 主题：根据当前主题切换 light/dark algorithm
+  const antdConfig = useMemo(() => {
+    if (theme === "auto") {
+      // 检测系统主题
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
+      return systemTheme === "dark"
+        ? { algorithm: antdTheme.darkAlgorithm }
+        : { algorithm: antdTheme.defaultAlgorithm };
+    }
+    return theme === "dark"
+      ? { algorithm: antdTheme.darkAlgorithm }
+      : { algorithm: antdTheme.defaultAlgorithm };
+  }, [theme]);
+
+  // 根据窗口类型渲染
+  const getDom = () => {
+    return (
+      <>
+        <Header onOpenSettings={toggleSettings} showSettings={showSettings} />
+        <div className="content-container">
+          <MainPage />
+        </div>
+      </>
+    );
+  };
+
+  const appDom = () => {
+    return (
+      <ConfigProvider
+        theme={{
+          ...antdConfig,
+          token: {
+            colorPrimary: "#4caf50",
+            colorBgBase: theme === "dark" ? "#000" : "#fff",
+          },
+        }}
+      >
+        <div className="app-container" style={bgStyles}>
+          {getDom()}
+        </div>
+      </ConfigProvider>
+    );
+  };
+
+  return appDom();
+};
+
+export default App;
