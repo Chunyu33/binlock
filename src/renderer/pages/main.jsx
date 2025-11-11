@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Table, Button, Input, message, Progress } from "antd";
 import {
   PlusOutlined,
@@ -15,22 +15,11 @@ const MainPage = () => {
   const [tableHeight, setTableHeight] = useState(400);
 
   // 动态计算表格剩余高度
-  // useEffect(() => {
-  //   const updateHeight = () => {
-  //     const topOffset = tableWrapperRef.current?.getBoundingClientRect().top || 0;
-  //     const windowHeight = window.innerHeight;
-  //     setTableHeight(windowHeight - topOffset - 20); // 底部间距
-  //   };
-  //   updateHeight();
-  //   window.addEventListener("resize", updateHeight);
-  //   return () => window.removeEventListener("resize", updateHeight);
-  // }, []);
-  useLayoutEffect(() => {
+  useEffect(() => {
     const updateHeight = () => {
-      const topOffset =
-        tableWrapperRef.current?.getBoundingClientRect().top || 0;
+      const topOffset = tableWrapperRef.current?.getBoundingClientRect().top || 0;
       const windowHeight = window.innerHeight;
-      setTableHeight(windowHeight - topOffset - 20);
+      setTableHeight(windowHeight - topOffset - 20); // 底部间距
     };
     updateHeight();
     window.addEventListener("resize", updateHeight);
