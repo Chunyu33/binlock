@@ -126,14 +126,14 @@ const MainPage = () => {
       title: "文件名",
       dataIndex: "name",
       key: "name",
-      render: (text) => <span style={{ color: "#222" }}>{text}</span>,
+      render: (text) => <span style={{ color: "var(--text-color)" }}>{text}</span>,
     },
     {
       title: "状态",
       dataIndex: "status",
       key: "status",
       render: (_, record) => {
-        let color = "#333";
+        let color = "var(--text-color)";
         if (record.status === "encrypting") color = "#1890ff";
         if (record.status === "decrypting") color = "#faad14";
         if (record.status === "done") color = "#52c41a";

@@ -70,7 +70,7 @@ const createTray = () => {
     },
   ]);
 
-  tray.setToolTip("SlackeFish");
+  tray.setToolTip("BinLock");
   tray.setContextMenu(contextMenu);
 
   tray.on("click", () =>
