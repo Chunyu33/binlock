@@ -1,7 +1,3 @@
-/* custom-table.css — 基于 theme.css 变量的科技感表格样式
-   保留原有 DOM 结构和类名，支持亮/暗主题自动适配
-*/
-
 .custom-table {
   display: flex;
   flex-direction: column;
@@ -15,22 +11,28 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.06), 0 0 30px rgba(0,0,0,0.03);
 }
 
-/* 表头：使用主色渐变突出科技感，文字白色以保证对比 */
+/* 表头：使用主题变量渐变，科技感突出 */
 .custom-table-header {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  background: linear-gradient(90deg, var(--ant-primary-color), var(--ant-primary-color-hover));
-  color: #fff;
+  background: linear-gradient(
+    90deg,
+    var(--table-header-start, var(--ant-primary-color)),
+    var(--table-header-end, var(--ant-primary-color-hover))
+  );
+  color: var(--table-header-text, #fff);
   font-weight: 600;
   letter-spacing: 0.4px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* 表头单元格 */
 .custom-table-header .custom-table-cell {
   padding: 6px 10px;
-  color: rgba(255,255,255,0.95);
+  /* color: var(--table-header-text, #fff); */
+  color: var(--input-bg);
   font-size: 13px;
 }
 
@@ -39,7 +41,11 @@
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  background: linear-gradient(
+    180deg,
+    var(--table-body-start, rgba(255,255,255,0.02)),
+    var(--table-body-end, transparent)
+  );
 }
 
 /* 行样式 */
@@ -50,7 +56,7 @@
   border-bottom: 1px solid var(--divider-color);
 }
 
-/* hover 高亮（用主题变量） */
+/* hover 高亮 */
 .custom-table-row:hover {
   background: var(--hover-bg-color);
   box-shadow: inset 0 0 18px var(--shadow-color);
@@ -69,30 +75,29 @@
   font-size: 13px;
 }
 
-/* 指定宽度列支持 width (px) - 传入 columns 时设置 width */
+/* 指定宽度列保持固定 */
 .custom-table-cell[style*="flex: 0 0"] {
-  /* 保持固定列居中对齐 */
   align-items: center;
 }
 
-/* 奇偶行微差（在亮主题可看到微微区分，暗色中差异可更小） */
+/* 奇偶行微差 */
 .custom-table-body .custom-table-row:nth-child(odd) {
-  background: rgba(0,0,0,0);
+  background: var(--table-row-odd, rgba(0,0,0,0));
 }
 .custom-table-body .custom-table-row:nth-child(even) {
-  background: rgba(0,0,0,0);
+  background: var(--table-row-even, rgba(0,0,0,0));
 }
 
-/* 状态颜色（优先使用内联颜色或变量）——如果你在 render 中使用内联 color，会被显示 */
+/* 状态颜色 */
 .custom-table-cell .status {
   font-weight: 600;
 }
 
-/* 小进度条样式（用于 render 里渲染进度条元素） */
+/* 小进度条样式 */
 .custom-progress {
   width: 120px;
   height: 8px;
-  background: rgba(255,255,255,0.06);
+  background: var(--progress-bg, rgba(255,255,255,0.06));
   border-radius: 6px;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
@@ -101,11 +106,15 @@
   display: block;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--ant-primary-color), var(--primary-color));
+  background: linear-gradient(
+    90deg,
+    var(--progress-start, var(--ant-primary-color)),
+    var(--progress-end, var(--primary-color))
+  );
   transition: width 0.18s linear;
 }
 
-/* 输出路径文字风格 */
+/* 输出路径文字 */
 .custom-table-cell .outpath {
   color: var(--text-color-secondary);
   font-size: 12px;
@@ -122,7 +131,7 @@
   font-style: italic;
 }
 
-/* 自定义滚动条（针对 webkit 浏览器 / Electron） */
+/* 自定义滚动条 */
 .custom-table-body::-webkit-scrollbar {
   width: 10px;
 }
@@ -145,5 +154,38 @@
   .custom-table-header .custom-table-cell { font-size: 12px; padding: 8px 10px; }
 }
 
-/* 保证表格圆角在容器外层生效（如果你把 custom-table 放在带背景的容器） */
+/* 保证表格圆角在容器外层生效 */
 .custom-table { border-radius: 8px; }
+
+/* 亮/暗主题表头变量 */
+:root {
+  --table-header-start: #43a047;
+  --table-header-end: #66bb6a;
+  --table-header-text: #fff;
+
+  --table-body-start: rgba(255,255,255,0.02);
+  --table-body-end: transparent;
+
+  --table-row-odd: rgba(0,0,0,0);
+  --table-row-even: rgba(0,0,0,0);
+
+  --progress-bg: rgba(255,255,255,0.06);
+  --progress-start: #43a047;
+  --progress-end: #66bb6a;
+}
+
+[data-theme='dark'] {
+  --table-header-start: #5dd39e;
+  --table-header-end: #388e3c;
+  --table-header-text: #fff;
+
+  --table-body-start: rgba(255,255,255,0.02);
+  --table-body-end: transparent;
+
+  --table-row-odd: rgba(255,255,255,0.02);
+  --table-row-even: rgba(255,255,255,0.03);
+
+  --progress-bg: rgba(255,255,255,0.06);
+  --progress-start: #5dd39e;
+  --progress-end: #388e3c;
+}

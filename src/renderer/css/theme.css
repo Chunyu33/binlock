@@ -5,6 +5,9 @@
   --background-secondary: #ffffff;    /* 卡片、表格背景 */
   --text-color: #0f2412;              /* 主文本（深绿色调） */
   --text-color-secondary: #2e7d32;    /* 次级文本 */
+  --table-header-start: #43a047; /* 深绿色渐变起点 */
+  --table-header-end: #66bb6a;   /* 深绿色渐变终点 */
+  --table-header-text: #fff;
 
   /* 绿色主色调（清新赛博绿） */
   --primary-color: #00c853;
@@ -48,6 +51,9 @@
   --background-secondary: #111c15;
   --text-color: #d2f8e2;
   --text-color-secondary: #7ddda2;
+  --table-header-start: #5dd39e;
+  --table-header-end: #388e3c;
+  --table-header-text: #fff;
 
   /* 主色调（带点荧光感的绿） */
   --primary-color: #00e676;
