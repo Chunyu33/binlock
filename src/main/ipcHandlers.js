@@ -4,6 +4,7 @@ const {
   setMainWindowRef,
   showWindow,
   hideWindow,
+  minimizeWindow,
   setTheme,
   getTheme,
   openFiles,
@@ -39,7 +40,7 @@ function registerIPC(ipcMain, mainWindow) {
   // ======================
   // 主窗口操作
   // ======================
-  ipcMain.handle("minimize-window", () => hideWindow());
+  ipcMain.handle("minimize-window", () => minimizeWindow());
   ipcMain.handle("show-window", () => showWindow());
   ipcMain.handle("hide-window", (_) => hideWindow());
 

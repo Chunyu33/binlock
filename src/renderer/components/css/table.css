@@ -1,0 +1,149 @@
+/* custom-table.css — 基于 theme.css 变量的科技感表格样式
+   保留原有 DOM 结构和类名，支持亮/暗主题自动适配
+*/
+
+.custom-table {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06), 0 0 30px rgba(0,0,0,0.03);
+}
+
+/* 表头：使用主色渐变突出科技感，文字白色以保证对比 */
+.custom-table-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, var(--ant-primary-color), var(--ant-primary-color-hover));
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* 表头单元格 */
+.custom-table-header .custom-table-cell {
+  padding: 6px 10px;
+  color: rgba(255,255,255,0.95);
+  font-size: 13px;
+}
+
+/* 内容区：占满剩余空间并可滚动 */
+.custom-table-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+}
+
+/* 行样式 */
+.custom-table-row {
+  display: flex;
+  align-items: center;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+/* hover 高亮（用主题变量） */
+.custom-table-row:hover {
+  background: var(--hover-bg-color);
+  box-shadow: inset 0 0 18px var(--shadow-color);
+}
+
+/* 单元格 */
+.custom-table-cell {
+  flex: 1;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-color);
+  font-size: 13px;
+}
+
+/* 指定宽度列支持 width (px) - 传入 columns 时设置 width */
+.custom-table-cell[style*="flex: 0 0"] {
+  /* 保持固定列居中对齐 */
+  align-items: center;
+}
+
+/* 奇偶行微差（在亮主题可看到微微区分，暗色中差异可更小） */
+.custom-table-body .custom-table-row:nth-child(odd) {
+  background: rgba(0,0,0,0);
+}
+.custom-table-body .custom-table-row:nth-child(even) {
+  background: rgba(0,0,0,0);
+}
+
+/* 状态颜色（优先使用内联颜色或变量）——如果你在 render 中使用内联 color，会被显示 */
+.custom-table-cell .status {
+  font-weight: 600;
+}
+
+/* 小进度条样式（用于 render 里渲染进度条元素） */
+.custom-progress {
+  width: 120px;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+.custom-progress > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--ant-primary-color), var(--primary-color));
+  transition: width 0.18s linear;
+}
+
+/* 输出路径文字风格 */
+.custom-table-cell .outpath {
+  color: var(--text-color-secondary);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 空数据提示 */
+.empty {
+  padding: 22px;
+  text-align: center;
+  color: var(--text-color-secondary);
+  font-style: italic;
+}
+
+/* 自定义滚动条（针对 webkit 浏览器 / Electron） */
+.custom-table-body::-webkit-scrollbar {
+  width: 10px;
+}
+.custom-table-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-table-body::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.custom-table-body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+/* 响应式缩小字体 */
+@media (max-width: 800px) {
+  .custom-table-cell { font-size: 13px; padding: 8px 10px; }
+  .custom-table-header .custom-table-cell { font-size: 12px; padding: 8px 10px; }
+}
+
+/* 保证表格圆角在容器外层生效（如果你把 custom-table 放在带背景的容器） */
+.custom-table { border-radius: 8px; }

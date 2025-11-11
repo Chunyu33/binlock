@@ -3,17 +3,9 @@ import { ConfigProvider, theme as antdTheme } from "antd";
 import Header from "./components/Header";
 import SettingMenu from "./components/SettingMenu";
 import MainPage from "./pages/main";
-import useTheme from "./hooks/useTheme"; // 引入自定义 Hook
+import useTheme from "./hooks/useTheme";
 
-// import bgImage from "../assets/bg1.png"; // 背景图
-
-// const bgStyles = {
-//   backgroundImage: `url(${bgImage})`,
-//   backgroundSize: "cover",
-//   backgroundPosition: "center",
-// };
 const bgStyles = {};
-
 
 const App = () => {
   const [showSettings, setShowSettings] = useState(false);
@@ -22,10 +14,6 @@ const App = () => {
   // 🎨 从 Hook 获取主题状态和更新逻辑
   const { theme } = useTheme();
 
-
-  const toggleSettings = () => {
-    console.log("toggleSettings");
-  };
 
   // 动态控制 antd 主题：根据当前主题切换 light/dark algorithm
   const antdConfig = useMemo(() => {
@@ -48,10 +36,19 @@ const App = () => {
   const getDom = () => {
     return (
       <>
-        <Header onOpenSettings={toggleSettings} showSettings={showSettings} />
+        <Header onOpenSettings={() => setShowSettings((prev) => !prev)} />
         <div className="content-container">
           <MainPage />
         </div>
+
+        {showSettings && (
+          <div className="setting-menu-wrapper">
+            <SettingMenu
+              ref={settingsRef}
+              onClose={() => setShowSettings(false)}
+            />
+          </div>
+        )}
       </>
     );
   };

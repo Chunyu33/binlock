@@ -89,8 +89,14 @@ function hideWindow() {
   if (!mainWindow || mainWindow.isDestroyed()) return;
 
   mainWindow.hide();
-  // closeSettingsWindow();
 }
+
+// 最小化窗口
+function minimizeWindow() {
+  if (!mainWindow || mainWindow.isDestroyed()) return;
+  mainWindow.minimize();
+}
+
 
 // 设置透明度
 function setOpacity(val) {
@@ -126,6 +132,7 @@ module.exports = {
   setMainWindowRef,
   showWindow,
   hideWindow,
+  minimizeWindow,
   setOpacity,
   setTheme,
   getTheme,

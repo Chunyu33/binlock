@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Table, Button, Input, message, Progress } from "antd";
+import { Button, Input, message, Progress } from "antd";
+import Table from '../components/Table'
 import {
   PlusOutlined,
   FolderOpenOutlined,
@@ -187,16 +188,9 @@ const MainPage = () => {
       {/* 文件表格 */}
       <div ref={tableWrapperRef} className="table-container">
         <Table
+         columns={columns}
           dataSource={fileList}
-          columns={columns}
-          rowKey="uid"
-          pagination={false}
-          scroll={{ y: tableHeight }}
-          bordered
-          style={{
-            height: "calc(100% - 10px)",
-            borderRadius: 8,
-          }}
+          height={`calc(${tableHeight}px)`}
         />
       </div>
     </div>

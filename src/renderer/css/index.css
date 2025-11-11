@@ -10,14 +10,6 @@ body {
     background-color 0.3s ease;
   overflow: hidden; /* 防止页面级滚动条 */
 }
-/* 切换到 dark 主题 */
-body[data-theme="dark"] {
-  border-radius: 20px; /* 确保dark主题下也有圆角 */
-}
-/* 切换到 dark 主题 */
-body[data-theme="light"] {
-  border-radius: 20px; /* 确保dark主题下也有圆角 */
-}
 
 #root {
   height: 100%;
@@ -102,3 +94,30 @@ body[data-theme="light"] {
   font-size: 14px;
   cursor: pointer;
 }
+
+.setting-menu-wrapper {
+  position: absolute;
+  top:30px; /* 根据 header 高度微调 */
+  right: 46px;
+  width: 200px;
+  height: 120px;
+  z-index: 100;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-secondary, rgba(30, 30, 30, 0.95));
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.2s ease;
+  backdrop-filter: blur(12px) saturate(180%);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

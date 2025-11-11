@@ -20,7 +20,6 @@ const Header = ({ onOpenSettings }) => {
 
   return (
     <div className="header-bar">
-      {/* 左侧 Logo + 导航 */}
       <div className="header-left">
         <div className="header-title">
           <img src={AppIcon} alt="" style={{width: "18px", height: "18px", borderRadius: "2px"}} />
