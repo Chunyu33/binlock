@@ -55,6 +55,9 @@ const MainPage = () => {
       const { canceled, filePaths } = await window.electronAPI.selectFolder();
       if (!canceled && filePaths.length > 0) {
         setOutputDir(filePaths[0]);
+        message.info(`当前输出目录: ${filePaths[0]}`, 5);
+      } else {
+        setOutputDir("");
       }
     } catch (err) {
       message.error("选择输出目录失败：" + err.message);

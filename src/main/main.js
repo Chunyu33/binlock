@@ -48,9 +48,6 @@ const getIconPath = () => {
 };
 
 const createTray = () => {
-  // const iconPath = path.join(__dirname, "assets", "SlackeFish.png");
-  // const trayIcon = nativeImage.createFromPath(iconPath);
-  // tray = new Tray(trayIcon);
   tray = new Tray(getIconPath());
 
   const contextMenu = Menu.buildFromTemplate([
