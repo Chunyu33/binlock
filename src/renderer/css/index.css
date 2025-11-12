@@ -23,8 +23,7 @@ body {
   flex-direction: column;
   position: relative;
 
-  /* 科技感背景 */
-  background: linear-gradient(135deg, #0d1117 0%, #1a1f2b 40%, #0a0f1a 100%);
+  background-color: var(--container-bg);
   background-size: 400% 400%;
   animation: techGradient 15s ease infinite;
 

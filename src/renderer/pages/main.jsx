@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button, Input, message, Progress } from "antd";
+import { Button, Input, message, Progress, Tooltip } from "antd";
 import Table from "../components/Table";
 import {
   PlusOutlined,
@@ -185,7 +185,9 @@ const MainPage = () => {
       dataIndex: "name",
       key: "name",
       render: (text) => (
-        <span style={{ color: "var(--text-color)" }} title={text}>{text}</span>
+        <span style={{ color: "var(--text-color)" }} title={text}>
+          {text}
+        </span>
       ),
     },
     {
@@ -214,7 +216,11 @@ const MainPage = () => {
       title: "输出路径",
       dataIndex: "outputPath",
       key: "outputPath",
-      render: (text) => <span style={{ color: "#ccc" }} title={text}>{text || "-"}</span>,
+      render: (text) => (
+        <span style={{ color: "#ccc" }} title={text}>
+          {text || "-"}
+        </span>
+      ),
     },
   ];
 
@@ -225,21 +231,47 @@ const MainPage = () => {
         <Button icon={<PlusOutlined />} onClick={handleSelectFiles}>
           选择文件
         </Button>
-        <Button icon={<FolderOpenOutlined />} onClick={handleSelectOutput}>
-          输出目录
-        </Button>
+        <Tooltip
+          title={outputDir ? outputDir : "请选择输出目录"}
+          color="var(--text-color)"
+          styles={{ body: { color: "var(--background-color)" } }}
+        >
+          <Button icon={<FolderOpenOutlined />} onClick={handleSelectOutput}>
+            输出目录
+          </Button>
+        </Tooltip>
         <Input.Password
-          placeholder="输入密码"
+          placeholder="输入密钥"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={{ width: 200 }}
         />
-        <Button type="primary" onClick={handleEncrypt} disabled={!fileList.length || !password}>
-          开始加密
-        </Button>
-        <Button type="primary" onClick={handleDecrypt} disabled={!fileList.length || !password}>
-          开始解密
-        </Button>
+        <Tooltip
+          title={!fileList.length || !password ? "请选择文件、输入密钥" : ""}
+          color="var(--text-color)"
+          styles={{ body: { color: "var(--background-color)" } }}
+        >
+          <Button
+            type="primary"
+            onClick={handleEncrypt}
+            disabled={!fileList.length || !password}
+          >
+            开始加密
+          </Button>
+        </Tooltip>
+        <Tooltip
+          title={!fileList.length || !password ? "请选择文件、输入密钥" : ""}
+          color="var(--text-color)"
+          styles={{ body: { color: "var(--background-color)" } }}
+        >
+          <Button
+            type="primary"
+            onClick={handleDecrypt}
+            disabled={!fileList.length || !password}
+          >
+            开始解密
+          </Button>
+        </Tooltip>
         <Button danger icon={<ClearOutlined />} onClick={handleClear}>
           清空列表
         </Button>

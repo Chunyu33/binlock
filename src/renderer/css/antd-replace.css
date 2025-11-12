@@ -1,57 +1,7 @@
-/* 表格外层容器圆角 + 溢出隐藏 */
-.ant-table {
-  border-radius: 10px !important;
-  overflow: hidden !important;
-  border: none !important;
-  padding-bottom: 10px;
-}
-
-/* 表头背景 + 文字颜色 */
-.ant-table-thead > tr > th {
-  background: linear-gradient(135deg, #1b1f33, #0d0f1b) !important;
-  color: #a0c4ff !important;
-  border-bottom: none !important; /* 去掉表头下边框 */
-  text-align: left;
-  font-weight: 500;
-}
-
-/* 表体背景 + 行分隔 */
-.ant-table-tbody > tr > td {
-  background: linear-gradient(135deg, #11131d, #1a1f2b) !important;
-  color: #cfd8ff !important;
-  border-bottom: none !important; /* 去掉行默认分隔线 */
-}
-
-/* 行 hover 高亮 */
-.ant-table-tbody > tr:hover > td {
-  background: linear-gradient(135deg, #1e2235, #0f111f) !important;
-}
-
-/* 滚动条美化 */
-.ant-table-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-.ant-table-body::-webkit-scrollbar-thumb {
-  background: rgba(100, 150, 255, 0.4);
-  border-radius: 4px;
-}
-
-.ant-table-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-/* 去掉表格外层默认边框（针对 bordered） */
-.ant-table-bordered {
-  border: none !important;
-}
-
-:where(.css-dev-only-do-not-override-1hp2dlu).ant-table-wrapper .ant-table {
-  scrollbar-color: none;
-}
-:where(.css-dev-only-do-not-override-1hp2dlu).ant-table-wrapper
-  .ant-table.ant-table-bordered
-  > .ant-table-container {
-  border-inline-start: 0px solid #f0f0f0;
-  border-top: 0px solid #f0f0f0;
+/* 覆盖antd按钮 disabled 样式*/
+.ant-btn[disabled] {
+  color: var(-btn-disabled-bg) !important;  /* 改变 disabled 按钮文字颜色 */
+  border-color: var(--btn-disabled-text) !important; /* 改变 disabled 按钮边框颜色 */
+  background-color: var(--btn-disabled-border) !important; /* 改变 disabled 按钮背景颜色 */
+  opacity: 1 !important; /* 调整透明度 */
 }
