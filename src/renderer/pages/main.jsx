@@ -247,7 +247,7 @@ const MainPage = () => {
           style={{ width: 200 }}
         />
         <Tooltip
-          title={!fileList.length || !password ? "请选择文件、输入密钥" : ""}
+          title={!fileList.length || !password ? "请选择文件并且输入密钥" : ""}
           color="var(--text-color)"
           styles={{ body: { color: "var(--background-color)" } }}
         >
@@ -260,7 +260,7 @@ const MainPage = () => {
           </Button>
         </Tooltip>
         <Tooltip
-          title={!fileList.length || !password ? "请选择文件、输入密钥" : ""}
+          title={!fileList.length || !password ? "请选择文件并且输入密钥" : ""}
           color="var(--text-color)"
           styles={{ body: { color: "var(--background-color)" } }}
         >

@@ -1,15 +1,12 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { ConfigProvider, theme as antdTheme } from "antd";
 import Header from "./components/Header";
-import SettingMenu from "./components/SettingMenu";
 import MainPage from "./pages/main";
 import useTheme from "./hooks/useTheme";
 
 const bgStyles = {};
 
 const App = () => {
-  const [showSettings, setShowSettings] = useState(false);
-  const settingsRef = useRef(null);
 
   // 🎨 从 Hook 获取主题状态和更新逻辑
   const { theme } = useTheme();
@@ -36,19 +33,10 @@ const App = () => {
   const getDom = () => {
     return (
       <>
-        <Header onOpenSettings={() => setShowSettings((prev) => !prev)} />
+        <Header />
         <div className="content-container">
           <MainPage />
         </div>
-
-        {showSettings && (
-          <div className="setting-menu-wrapper">
-            <SettingMenu
-              ref={settingsRef}
-              onClose={() => setShowSettings(false)}
-            />
-          </div>
-        )}
       </>
     );
   };

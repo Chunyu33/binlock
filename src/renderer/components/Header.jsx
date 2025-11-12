@@ -1,18 +1,20 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
+import { Modal } from "antd";
 import "./css/header.css";
 import { IconSetting, IconMinimize, IconClose } from "./Icon";
+import Setting from "./Setting";
 import AppIcon from "../../assets/app.png";
 import AppWhiteIcon from "../../assets/app-white.png";
 import useTheme from "../hooks/useTheme";
 
-// 独立 SVG 组件
 const IconButton = ({ title, onClick, children }) => (
   <button className="header-btn" onClick={onClick} title={title}>
     {children}
   </button>
 );
 
-const Header = ({ onOpenSettings }) => {
+const Header = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const handleMinimize = () => window.electronAPI?.minimizeWindow();
   const handleClose = () => window.electronAPI?.closeWindow();
 
@@ -32,6 +34,16 @@ const Header = ({ onOpenSettings }) => {
       ? AppWhiteIcon
       : AppIcon;
   }, [theme]);
+
+  // 打开设置 Modal
+  const handleOpenSettings = () => {
+    setIsModalVisible(true);
+  };
+
+  // 关闭设置 Modal
+  const handleCloseSettings = () => {
+    setIsModalVisible(false);
+  };
   
   return (
     <div className="header-bar">
@@ -48,7 +60,7 @@ const Header = ({ onOpenSettings }) => {
 
       {/* 右侧操作按钮 */}
       <div className="header-actions">
-        <IconButton title="设置" onClick={onOpenSettings}>
+        <IconButton title="设置" onClick={handleOpenSettings}>
           <IconSetting />
         </IconButton>
         <IconButton title="最小化" onClick={handleMinimize}>
@@ -58,6 +70,17 @@ const Header = ({ onOpenSettings }) => {
           <IconClose />
         </IconButton>
       </div>
+
+      {/* Modal 显示设置页面 */}
+      <Modal
+        title=""
+        open={isModalVisible}
+        onCancel={handleCloseSettings}
+        footer={null}
+        width="60%"
+      >
+        <Setting />
+      </Modal>
     </div>
   );
 };

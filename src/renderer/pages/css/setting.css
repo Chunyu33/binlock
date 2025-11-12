@@ -1,0 +1,13 @@
+.setting-page {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ant-tabs-left .ant-tabs-nav {
+  width: 150px; /* 设置竖向 Tabs 的宽度 */
+}
+
+.ant-tabs-tabpane {
+  padding: 20px;
+}
