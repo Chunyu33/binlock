@@ -1,3 +1,9 @@
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Input, message, Progress, Tooltip } from "antd";
 import Table from "../components/Table";

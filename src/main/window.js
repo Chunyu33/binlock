@@ -1,3 +1,9 @@
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
 const { BrowserWindow, dialog, shell, app } = require("electron");
 const store = require("./store"); // 持久化 store
 const fileCrypto = require("../utils/fileCrypto");
@@ -36,9 +42,7 @@ async function openPath(path) {
 // 处理文件
 async function processFiles(event, payload) {
   const { files, mode, outputDir, password } = payload;
-  // sendProgress helper
   const sendProgress = (data) => {
-    // forward progress to renderer
     event.sender.send("process-progress", data);
   };
 
@@ -72,7 +76,7 @@ function quit() {
   }
 
   setTimeout(() => {
-    app.exit(0); // 代替 process.exit()
+    app.exit(0);
   }, 100);
 }
 

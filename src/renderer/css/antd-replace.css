@@ -1,3 +1,9 @@
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
 /* 覆盖antd按钮 disabled 样式*/
 .ant-btn[disabled] {
   color: var(-btn-disabled-bg) !important;  /* 改变 disabled 按钮文字颜色 */

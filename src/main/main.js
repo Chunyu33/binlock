@@ -1,3 +1,9 @@
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
 const { app, BrowserWindow, ipcMain, Tray, Menu, screen } = require("electron");
 const path = require("node:path");
 const coreWin = require("./window");

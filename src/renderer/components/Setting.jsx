@@ -69,10 +69,10 @@ const SettingPage = () => {
             4. 解密时，若未选择输出目录，则默认输出到当前目录下的 <strong>decrypted</strong>。
           </p>
           <p>5. 若解密失败，通常是因为密钥错误。如有其他情况，请联系作者反馈。</p>
-          <p>6. 所有加密解密操作均在本机运行，不会上传至服务器，安全高效。</p>
-          <p>7. 请务必牢记你设置的密钥，否则无法解密。</p>
-          <p>8. 本软件不支持第三方软件/平台加密过的文件的解密。</p>
-          <p>9. 加密和解密操作会保留原始文件，你可以根据自己的情况手动删除原始文件。</p>
+          <p>6. 请务必牢记你设置的密钥，否则无法解密。</p>
+          <p>7. 加密和解密操作会保留原始文件，你可以根据自己的情况手动删除原始文件。</p>
+          <p>8. 所有加密解密操作均在本机运行，不会上传至服务器，安全高效。</p>
+          <p>9. 本软件不支持第三方软件/平台加密过的文件的解密。</p>
           <p>10. 本软件仅供学习交流，请勿用于商业用途。</p>
         </div>
       ),
@@ -89,7 +89,7 @@ const SettingPage = () => {
             QQ群：<strong>646123989</strong>
           </p>
           <p>
-            或者联系直接作者，微信：<strong>B_HH6050</strong>
+            或者联系直接作者，微信：<strong>B_HH6050</strong> ，请务必备注来意。
           </p>
         </div>
       ),
@@ -104,9 +104,9 @@ const SettingPage = () => {
             版本: <strong>1.0.0</strong>
           </p>
           <p>
-            开发者: <strong>Evan</strong>
+            开发者: <strong>Evan Lau</strong>
           </p>
-          <div className="copyright">
+          <div className="copyright" style={{bottom: '6px'}}>
             Copyright © {new Date().getFullYear()} Evan. All rights reserved.
           </div>
         </div>

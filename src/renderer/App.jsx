@@ -1,4 +1,10 @@
-import React, { useState, useRef, useMemo } from "react";
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
+import React, { useMemo } from "react";
 import { ConfigProvider, theme as antdTheme } from "antd";
 import Header from "./components/Header";
 import MainPage from "./pages/main";
@@ -8,7 +14,7 @@ const bgStyles = {};
 
 const App = () => {
 
-  // 🎨 从 Hook 获取主题状态和更新逻辑
+  // 获取主题状态和更新逻辑
   const { theme } = useTheme();
 
 
@@ -30,7 +36,7 @@ const App = () => {
   }, [theme]);
 
   // 根据窗口类型渲染
-  const getDom = () => {
+  const mainDom = () => {
     return (
       <>
         <Header />
@@ -53,7 +59,7 @@ const App = () => {
         }}
       >
         <div className="app-container" style={bgStyles}>
-          {getDom()}
+          {mainDom()}
         </div>
       </ConfigProvider>
     );

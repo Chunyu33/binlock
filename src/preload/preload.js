@@ -1,3 +1,9 @@
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electronAPI", {
@@ -8,14 +14,11 @@ contextBridge.exposeInMainWorld("electronAPI", {
   showWindow: () => ipcRenderer.invoke("show-window"),
 
   // 核心功能 加解密
-  // Dialogs
   selectFiles: (options) => ipcRenderer.invoke("dialog:openFiles", options),
   selectFolder: () => ipcRenderer.invoke("dialog:selectFolder"),
 
-  // Processing
   processFiles: (payload) => ipcRenderer.invoke("process-files", payload), // returns final results array
 
-  // progress subscribe: callback(payload)
   onProcessProgress: (cb) => {
     const handler = (_, data) => cb(data);
     ipcRenderer.on("process-progress", handler);

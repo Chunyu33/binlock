@@ -2,7 +2,7 @@
   "name": "binlock",
   "productName": "Binlock2",
   "version": "1.0.0",
-  "description": "文件加解密器",
+  "description": "文件加解密工具",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",

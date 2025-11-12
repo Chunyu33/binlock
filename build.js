@@ -1,3 +1,9 @@
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
 require('dotenv').config(); // 加载 .env 文件
 const { build } = require('electron-builder');
 
@@ -8,7 +14,7 @@ build({
       {
         provider: "github",
         owner: "Chunyu33",
-        repo: "slacke-fish",
+        repo: "binlock",
         token: process.env.GH_TOKEN,  // 从环境变量读取
       }
     ]

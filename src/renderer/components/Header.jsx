@@ -1,3 +1,9 @@
+/*
+ * © 2025 Evan. All rights reserved.
+ *
+ * This software is licensed under the MIT License.
+ * See the LICENSE file for more details.
+ */
 import React, { useMemo, useState } from "react";
 import { Modal } from "antd";
 import "./css/header.css";
