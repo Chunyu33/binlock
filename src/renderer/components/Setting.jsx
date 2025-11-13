@@ -38,8 +38,10 @@ const SettingPage = () => {
         .matches
         ? "dark"
         : "light";
+      console.log("systemTheme===", systemTheme);
       document.documentElement.setAttribute("data-theme", systemTheme);
     } else {
+      console.log("data-theme===", value);
       document.documentElement.setAttribute("data-theme", value);
     }
     await window.electronAPI?.setTheme?.(value);

@@ -52,7 +52,7 @@
   > .ant-tabs-content-holder
   > .ant-tabs-content
   > .ant-tabs-tabpane {
-  padding: 4px 0 0 0 !important;
+  padding: 2px 0 0 0 !important;
 }
 :where(.css-dev-only-do-not-override-1supe1).ant-tabs-left
   > .ant-tabs-content-holder
@@ -100,18 +100,18 @@
 }
 /* Webkit 浏览器（如 Chrome、Safari） */
 .item-container::-webkit-scrollbar {
-  width: 8px;  /* 设置滚动条宽度 */
-  height: 8px;  /* 设置水平滚动条高度 */
+  width: 0px;  /* 设置滚动条宽度 */
+  height: 0px;  /* 设置水平滚动条高度 */
 }
 
 .item-container::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color); /* 滚动条滑块的颜色 */
+  background-color: var(--primary-color) !important; /* 滚动条滑块的颜色 */
   border-radius: 4px;  /* 滚动条滑块的圆角 */
-  border: 2px solid var(--background-secondary);  /* 滚动条滑块边框 */
+  border: 2px solid var(--background-secondary) !important;  /* 滚动条滑块边框 */
 }
 
 .item-container::-webkit-scrollbar-track {
-  background-color: var(--background-secondary); /* 滚动条轨道背景颜色 */
+  background-color: var(--background-secondary) !important; /* 滚动条轨道背景颜色 */
   border-radius: 4px;
 }
 

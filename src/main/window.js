@@ -109,9 +109,9 @@ function minimizeWindow() {
 function setTheme(theme) {
   store.set("theme", theme);
   console.log(`\n [setTheme] theme=${theme}`);
-  if (!mainWindowRef) return;
-  mainWindowRef.setBackgroundColor(theme === "dark" ? "#1E1E1E" : "#FFFFFF");
-  mainWindowRef.webContents.send("theme-changed", theme);
+  if (!mainWindow) return;
+  mainWindow.setBackgroundColor(theme === "dark" ? "#1E1E1E" : "#FFFFFF");
+  mainWindow.webContents.send("theme-changed", theme);
 }
 // 获取当前主题
 function getTheme() {

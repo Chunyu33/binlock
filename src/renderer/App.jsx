@@ -56,7 +56,7 @@ const App = () => {
           },
         }}
       >
-        <AntdApp>
+        <AntdApp style={{height: '100%'}}>
           <div className="app-container" style={bgStyles}>
             {mainDom()}
           </div>
