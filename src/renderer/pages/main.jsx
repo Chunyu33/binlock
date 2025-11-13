@@ -5,7 +5,7 @@
  * See the LICENSE file for more details.
  */
 import React, { useState, useEffect, useRef } from "react";
-import { Button, Input, message, Progress, Tooltip } from "antd";
+import { App, Button, Input, Progress, Tooltip } from "antd";
 import Table from "../components/Table";
 import {
   PlusOutlined,
@@ -15,11 +15,13 @@ import {
 import "./css/main.css";
 
 const MainPage = () => {
+  const { message } = App.useApp(); // ✅ 从 App context 获取实例
   const [fileList, setFileList] = useState([]);
   const [password, setPassword] = useState("");
   const [outputDir, setOutputDir] = useState("");
   const tableWrapperRef = useRef(null);
   const [tableHeight, setTableHeight] = useState(400);
+
 
   // 动态计算表格剩余高度
   useEffect(() => {

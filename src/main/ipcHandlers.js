@@ -7,7 +7,6 @@
 const {
   quit,
   setMainWindow,
-  setMainWindowRef,
   showWindow,
   hideWindow,
   minimizeWindow,
@@ -17,12 +16,13 @@ const {
   openPath,
   selectFolder,
   processFiles,
+  setDeleteOriginalFile,
+  getDeleteOriginalFile,
 } = require("./window");
 
 function registerIPC(ipcMain, mainWindow) {
   // 初始化主窗口引用
   setMainWindow(mainWindow);
-  setMainWindowRef(mainWindow);
 
   // --------- IPC: dialogs ----------
   ipcMain.handle("dialog:openFiles", async (_, options = {}) =>
@@ -31,16 +31,10 @@ function registerIPC(ipcMain, mainWindow) {
 
   ipcMain.handle("dialog:selectFolder", async () => selectFolder());
 
-  // --------- IPC: start processing ----------
-  /**
-   * payload: { files: [{uid, path}], mode: 'encrypt'|'decrypt', outputDir: string|null, password: string }
-   * We will send incremental progress events via channel 'process-progress'
-   */
+  // --------- 文件处理 ----------
   ipcMain.handle("process-files", async (event, payload) =>
     processFiles(event, payload)
   );
-
-  // open output folder
   ipcMain.handle("open-path", async (_, p) => openPath(p));
 
   // ======================
@@ -60,6 +54,12 @@ function registerIPC(ipcMain, mainWindow) {
   // ======================
   ipcMain.handle("get-theme", () => getTheme());
   ipcMain.handle("set-theme", (_, theme) => setTheme(theme));
+
+  // ======================
+  // 设置-是否删除原文件
+  // ======================
+  ipcMain.handle("get-delete-original-file", () => getDeleteOriginalFile());
+  ipcMain.handle("set-delete-original-file", (_, del) => setDeleteOriginalFile(del));
 }
 
 module.exports = registerIPC;

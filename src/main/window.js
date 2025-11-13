@@ -45,13 +45,15 @@ async function processFiles(event, payload) {
   const sendProgress = (data) => {
     event.sender.send("process-progress", data);
   };
-
+  // 是否删除原文件 直接读取配置
+  const isDel = store.get("deleteOriginalFile", false)
   if (mode === "encrypt") {
     const res = await fileCrypto.encryptFiles(
       files,
       outputDir,
       password,
-      sendProgress
+      sendProgress,
+      isDel
     );
     return res;
   } else if (mode === "decrypt") {
@@ -59,7 +61,8 @@ async function processFiles(event, payload) {
       files,
       outputDir,
       password,
-      sendProgress
+      sendProgress,
+      isDel
     );
     return res;
   } else {
@@ -102,21 +105,6 @@ function minimizeWindow() {
 }
 
 
-// 设置透明度
-function setOpacity(val) {
-  store.set("opacity", val); // 持久化
-  if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.setOpacity(val);
-  }
-}
-
-let mainWindowRef = null;
-
-// 提供外部初始化方法
-function setMainWindowRef(win) {
-  mainWindowRef = win;
-}
-
 // 设置主题
 function setTheme(theme) {
   store.set("theme", theme);
@@ -130,18 +118,29 @@ function getTheme() {
   return store.get("theme", "light");
 }
 
+// 设置删除原文件
+function setDeleteOriginalFile(value) {
+  console.log(`\n [setDeleteOriginalFile] value=${value}`);
+  store.set("deleteOriginalFile", value);
+}
+
+// 获取是否删除原文件
+function getDeleteOriginalFile() {
+  return store.get("deleteOriginalFile", false);
+}
+
 module.exports = {
   quit,
   setMainWindow,
-  setMainWindowRef,
   showWindow,
   hideWindow,
   minimizeWindow,
-  setOpacity,
   setTheme,
   getTheme,
   openFiles,
   openPath,
   selectFolder,
   processFiles,
+  setDeleteOriginalFile,
+  getDeleteOriginalFile,
 };

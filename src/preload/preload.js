@@ -35,4 +35,10 @@ contextBridge.exposeInMainWorld("electronAPI", {
     ipcRenderer.on("theme-changed", handler);
     return () => ipcRenderer.removeListener("theme-changed", handler); // 返回取消函数
   },
+
+  // 设置
+  setDeleteOriginalFile: (value) =>
+    ipcRenderer.invoke("set-delete-original-file", value),
+
+  getDeleteOriginalFile: () => ipcRenderer.invoke("get-delete-original-file"),
 });

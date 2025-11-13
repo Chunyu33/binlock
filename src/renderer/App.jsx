@@ -5,7 +5,7 @@
  * See the LICENSE file for more details.
  */
 import React, { useMemo } from "react";
-import { ConfigProvider, theme as antdTheme } from "antd";
+import { App as AntdApp, ConfigProvider, theme as antdTheme } from "antd";
 import Header from "./components/Header";
 import MainPage from "./pages/main";
 import useTheme from "./hooks/useTheme";
@@ -13,10 +13,8 @@ import useTheme from "./hooks/useTheme";
 const bgStyles = {};
 
 const App = () => {
-
   // 获取主题状态和更新逻辑
   const { theme } = useTheme();
-
 
   // 动态控制 antd 主题：根据当前主题切换 light/dark algorithm
   const antdConfig = useMemo(() => {
@@ -58,9 +56,11 @@ const App = () => {
           },
         }}
       >
-        <div className="app-container" style={bgStyles}>
-          {mainDom()}
-        </div>
+        <AntdApp>
+          <div className="app-container" style={bgStyles}>
+            {mainDom()}
+          </div>
+        </AntdApp>
       </ConfigProvider>
     );
   };

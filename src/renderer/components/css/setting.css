@@ -79,8 +79,7 @@
   color: var(--text-color);
   overflow-y: auto;
   /* 自定义滚动条 */
-  scrollbar-width: thin;   /* Firefox */
-  scrollbar-color: var(--primary-color) var(--background-secondary); /* Firefox */
+  scrollbar-width: thin;
 }
 
 .copyright { 
@@ -93,6 +92,11 @@
   font-size: 12px;
   color: #747d8c;
   user-select: none;
+}
+
+.row-center {
+  display: flex;
+  align-items: center;
 }
 /* Webkit 浏览器（如 Chrome、Safari） */
 .item-container::-webkit-scrollbar {

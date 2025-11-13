@@ -211,9 +211,9 @@ async function decryptSingleFile(inputPath, outputDir, password, onProgress = ()
 }
 
 /**
- * encryptFiles - 批量加密
+ * 批量加密
  */
-async function encryptFiles(fileRecords, outputDir, password, sendProgress = () => {}) {
+async function encryptFiles(fileRecords, outputDir, password, sendProgress = () => {}, deleteOriginFiles = false) {
   const results = [];
   for (const rec of fileRecords) {
     const inputPath = rec.path;
@@ -226,6 +226,10 @@ async function encryptFiles(fileRecords, outputDir, password, sendProgress = () 
       const resPath = await encryptSingleFile(inputPath, outPath, password, (p) => {
         sendProgress({ uid: rec.uid, status: 'encrypting', percent: p });
       });
+      // 删除原文件（仅在成功加密后）
+      if (deleteOriginFiles) {
+        await fs.promises.unlink(inputPath).catch(() => {});
+      }
       sendProgress({ uid: rec.uid, status: 'done', percent: 100, outputPath: resPath });
       results.push({ uid: rec.uid, success: true, outputPath: resPath });
     } catch (err) {
@@ -237,9 +241,10 @@ async function encryptFiles(fileRecords, outputDir, password, sendProgress = () 
 }
 
 /**
- * decryptFiles - 批量解密
+ * 批量解密
  */
-async function decryptFiles(fileRecords, outputDir, password, sendProgress = () => {}) {
+async function decryptFiles(fileRecords, outputDir, password, sendProgress = () => {}, deleteOriginFiles = false) {
+  console.log('\n deleteOriginFiles ==== ', deleteOriginFiles)
   const results = [];
   for (const rec of fileRecords) {
     const inputPath = rec.path;
@@ -250,6 +255,10 @@ async function decryptFiles(fileRecords, outputDir, password, sendProgress = () 
       const resPath = await decryptSingleFile(inputPath, defaultOutDir, password, (p) => {
         sendProgress({ uid: rec.uid, status: 'decrypting', percent: p });
       });
+      // 删除原加密文件
+      if (deleteOriginFiles) {
+        await fs.promises.unlink(inputPath).catch(() => {});
+      }
       sendProgress({ uid: rec.uid, status: 'done', percent: 100, outputPath: resPath });
       results.push({ uid: rec.uid, success: true, outputPath: resPath });
     } catch (err) {
