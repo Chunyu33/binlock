@@ -1,6 +1,6 @@
 {
   "name": "binlock",
-  "productName": "Binlock2",
+  "productName": "BinLock",
   "version": "1.0.0",
   "description": "文件加解密工具",
   "main": ".webpack/main",
@@ -11,6 +11,29 @@
     "publish": "electron-forge publish",
     "build": "dotenv -e .env electron-builder",
     "lint": "echo \"No linting configured\""
+  },
+  "build": {
+    "appId": "com.evan.binlock",
+    "productName": "BinLock",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BinLock"
+    }
   },
   "keywords": [],
   "author": {
